@@ -1,0 +1,26 @@
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    height: 100%;
+    width: 60%;
+    background: #36363649;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name {
+    padding: 18px;
+    font-size: 28px;
+}
+
+.info{
+    width: 90%;
+    margin: 10px;
+}

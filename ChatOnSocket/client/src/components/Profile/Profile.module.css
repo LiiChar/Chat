@@ -1,0 +1,45 @@
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    height: 100%;
+    width: 60%;
+    background: rgba(24, 24, 24, 0.692);
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name {
+    width: 80%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 28px;    
+}
+
+.info{
+    width: 80%;
+    height: 20%;
+    display: flex;
+    align-items: left;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.img {
+    border-radius: 50%;
+}
+
+.idei {
+    padding: 30px;
+}

@@ -1,0 +1,23 @@
+.wrap {
+    background: rgb(24, 24, 24);
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.link:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(87, 87, 87) ;
+}
+
+.focus {
+    text-decoration: none;
+    color: rgb(179, 179, 179);
+}
