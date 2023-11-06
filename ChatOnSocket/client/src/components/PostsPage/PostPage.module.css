@@ -45,8 +45,9 @@
 }
 
 .wrapper {
-    max-height: 1000000000000000000vw;
-    min-height: 100vw;
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
     color: white;
     display: flex;
     justify-content: center;
@@ -94,9 +95,12 @@
     border: 0;
     height: 100%;
     width: 20%;
+    color: white;
 }
 
 .InputSub {
+    outline: none;
+    color: white;
     box-sizing: border-box;
     height: 100%;
     background-color: rgba(128, 128, 128, 0.39);

@@ -66,6 +66,14 @@ function PostsPage() {
     socket.on("addUser", (User) => {
       addUser(User);
     });
+    socket.on("addChat", () => {
+      const fetch = async () => {
+        return (await axios.get("http://localhost:4000/api/room")).data;
+      };
+      fetch().then((data) => {
+        setRooms(data);
+      });
+    });
   }, []);
 
   function hanldeEnter(event, i) {
@@ -88,6 +96,7 @@ function PostsPage() {
     setRooms([...rooms, { id: chat_id, name: name }]);
     setMainRomm(chat_id);
     setVisible(false);
+    socket.emit("addChat");
   }
 
   Posts.forEach((element) => {
@@ -139,7 +148,11 @@ function PostsPage() {
   return (
     <div
       className={Poster.wrapper}
-      style={{ backgroundImage: `url(${getImg("/bg1.jpg")})` }}>
+      style={{
+        backgroundImage: `url(${getImg("/bg1.jpg")})`,
+        overflow: "hidden",
+        backgroundSize: "100% 100%",
+      }}>
       <div className={Poster.cont}>
         <ModalChat
           isVisible={visible}
