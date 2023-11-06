@@ -1,42 +1,57 @@
-
-import { create } from 'zustand';
-import {v4} from 'uuid';
+import { create } from "zustand";
+import { v4 } from "uuid";
 
 export const useStore = create((set) => ({
-    OwnUser: { log: 'Goust', pas: '1' },
-    users: [{ id: 'Goust', log: 'Goust', pas: '1', Name: '', img: '' }],
-    Posts: [],
-    About: [],
-    id: '',
+  OwnUser: { log: "Goust", pas: "1" },
+  users: [{ id: "Goust", log: "Goust", pas: "1", Name: "", img: "" }],
+  Posts: [],
+  About: [],
+  Rooms: [],
+  room: 1,
+  id: "",
 
-    addId: id => 
+  setRoom: (room) =>
     set((state) => ({
-        id: id
+      room: room,
     })),
 
-    addAboutMe : (user, text) => 
+  setRooms: (rooms) =>
     set((state) => ({
-        About: [...state.About, {id: v4(), user: user, text: text}]
+      Rooms: rooms,
     })),
 
-    addUser: user =>
-        set((state) => ({
-            users: [...user]
-        })),
+  addRoom: (room) =>
+    set((state) => ({
+      Rooms: [...state.Rooms, room],
+    })),
 
-    addPost: Post =>
-        set((state) => ({
-            Posts: [...Post]
-        })),
+  addId: (id) =>
+    set((state) => ({
+      id: id,
+    })),
 
-    addUOwnUser: user =>
-        set((state) => ({
-            OwnUser: user
-        })),
+  addAboutMe: (user, text) =>
+    set((state) => ({
+      About: [...state.About, { id: v4(), user: user, text: text }],
+    })),
 
-    delOwnUser: () =>
-        set((state) => ({
-            OwnUser: { log: '', pas: '' }
-        })),
-}))
+  addUser: (user) =>
+    set((state) => ({
+      users: [...user],
+    })),
 
+  addPost: (Post) =>
+    set((state) => ({
+      Posts: Post,
+    })),
+
+  addUOwnUser: (user) =>
+    set((state) => ({
+      OwnUser: user,
+    })),
+
+  delOwnUser: () =>
+    set((state) => ({
+      OwnUser: { log: "", pas: "" },
+    })),
+}));

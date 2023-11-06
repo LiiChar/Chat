@@ -1,0 +1,33 @@
+.wrapper {
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.336);
+    position: fixed;
+    width: 98vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: white;
+    width: 37vw;
+    height: 7vh;
+    border-radius: 16px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.content input {
+    height: 4vh;
+    width: 29vw;
+}
+
+.content button {
+    height: 4vh;
+    width: 8vw;
+}
