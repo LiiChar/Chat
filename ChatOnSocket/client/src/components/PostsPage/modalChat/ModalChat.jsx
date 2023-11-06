@@ -19,6 +19,7 @@ const ModalChat = ({ isVisible, onHandle, closeModal }) => {
         <div onClick={closeModal} className={style.wrapper}>
           <div onClick={ClicContent} className={style.content}>
             <input
+              placeholder="Введите название чата"
               className={style.input}
               value={name}
               onChange={(e) => setName(e.target.value)}
