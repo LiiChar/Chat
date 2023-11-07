@@ -30,7 +30,7 @@ function FIrsStr({ reset }) {
           window.location.pathname === "/Post" ? FirsStr.focus : FirsStr.link
         }
         to={"/Post"}>
-        Посты
+        Чат
       </Link>
 
       <ProfileSign reset={reset} OwnUser={OwnUsers} />
