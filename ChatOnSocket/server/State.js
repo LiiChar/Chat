@@ -1,7 +1,9 @@
 let state = {
   OwnUser: { log: "Goust", pas: "1" },
   users: [{ id: "Goust", log: "Goust", pas: "1", Name: "", img: "" }],
-  Posts: [{ id: 5, room_id: 1, log: "Mik", post: `Pishoul v banu` }],
+  Posts: [
+    { id: 5, room_id: 1, log: "Mik", post: `Pishoul v banu a ya s toboi` },
+  ],
   About: [],
   rooms: [
     { id: 1, name: "Creative" },
