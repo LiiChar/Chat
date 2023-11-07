@@ -8,6 +8,12 @@ let state = {
       log: "Mik",
       post: `Pishoul v banu a ya s toboi fg dfg dfg`,
     },
+    {
+      id: 6,
+      room_id: 1,
+      log: "Mik",
+      post: `Pishoul v banu a ya s toboi fg dfg dfg`,
+    },
   ],
   About: [],
   rooms: [
