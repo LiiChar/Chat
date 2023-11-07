@@ -74,6 +74,14 @@ function PostsPage() {
         setRooms(data);
       });
     });
+    socket.on("deleteChat", () => {
+      const fetch = async () => {
+        return (await axios.get("http://localhost:4000/api/room")).data;
+      };
+      fetch().then((data) => {
+        setRooms(data);
+      });
+    });
   }, []);
 
   function hanldeEnter(event, i) {
@@ -89,14 +97,19 @@ function PostsPage() {
   }
 
   async function handleCreateChat(name) {
-    const chat_id = await axios.post("http://localhost:4000/api/room", {
-      name,
-    });
-    addRoom();
-    setRooms([...rooms, { id: chat_id, name: name }]);
-    setMainRomm(chat_id);
-    setVisible(false);
-    socket.emit("addChat");
+    if (name.length > 3) {
+      const chat_id = await axios.post("http://localhost:4000/api/room", {
+        name,
+        username: OwnUser.log,
+      });
+      addRoom();
+      setRooms([...rooms, { id: chat_id, name: name }]);
+      setMainRomm(chat_id);
+      setVisible(false);
+      socket.emit("addChat");
+    } else {
+      alert("Имя чата должно быть больше 3 символов");
+    }
   }
 
   Posts.forEach((element) => {
@@ -132,16 +145,24 @@ function PostsPage() {
 
   function handleChangePost(e) {
     addId(e.target.attributes.post.value);
+    setPostChange(
+      SortPost.find((post) => post.id == e.target.attributes.post.value).post
+    );
     setShowChange(true);
-    setPostChange("");
+  }
+
+  function deleteChat(id) {
+    socket.emit("deleteChat", { id: id });
   }
 
   async function changePost() {
     setShowChange(false);
+    setPostChange(Post);
     socket.emit("putPost", { id: postId, message: PostChange });
   }
 
   function showOptions(num) {
+    setShowChange(false);
     setShow(num);
   }
 
@@ -172,18 +193,32 @@ function PostsPage() {
               className={Poster.addRomms}>
               <div>Создать чат</div>
             </div>
-            {rooms.map((ro) => (
-              <div
-                style={{
-                  backgroundColor:
-                    room == ro.id ? "rgb(70, 70, 70)" : "inherit",
-                }}
-                key={ro.id}>
-                <div className={Poster.link} onClick={() => setMainRomm(ro.id)}>
-                  {ro.name}
+            <div className={Poster.listRooms}>
+              {rooms.map((ro) => (
+                <div
+                  style={{
+                    backgroundColor:
+                      room == ro.id ? "rgb(70, 70, 70)" : "inherit",
+                  }}
+                  key={ro.id}>
+                  <div
+                    className={Poster.link}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      padding: "0 5px",
+                    }}
+                    onClick={() => setMainRomm(ro.id)}>
+                    <span>{ro.name}</span>
+                    {OwnUser.log === ro.author ? (
+                      <span onClick={() => deleteChat(ro.id)}>x</span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
         {OwnUser.log === "" ? (
@@ -193,6 +228,7 @@ function PostsPage() {
             Постов нет
             <div className={Poster.Send}>
               <input
+                autoFocus={true}
                 className={Poster.InputSub}
                 type={Poster.text}
                 placeholder="Напишите что-нибудь"
@@ -302,6 +338,7 @@ function PostsPage() {
             {showChange ? (
               <div style={{ color: "white" }} className={Poster.Send}>
                 <input
+                  autoFocus={true}
                   className={Poster.InputSub}
                   type={Poster.text}
                   placeholder="Напишите что-нибудь"
@@ -316,6 +353,7 @@ function PostsPage() {
             ) : (
               <div style={{ color: "white" }} className={Poster.Send}>
                 <input
+                  autoFocus={true}
                   className={Poster.InputSub}
                   type={Poster.text}
                   placeholder="Напишите что-нибудь"
