@@ -46,6 +46,10 @@ exports.addUser = function (user) {
   state.users = [...state.users, user];
 };
 
+exports.getUserByLog = function (log) {
+  return state.users.find((user) => user.log == log);
+};
+
 exports.delPost = function (id) {
   state.Posts = state.Posts.filter((arg) => arg.id !== id);
 };

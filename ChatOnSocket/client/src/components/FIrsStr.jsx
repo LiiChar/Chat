@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import FirsStr from "./FirsStr.module.css";
 import { useStore } from "../store/store";
 import ProfileSign from "./SidePage/ProfileSign";
+import axios from "axios";
 
 function FIrsStr({ reset }) {
   const OwnUsers = useStore((state) => state.OwnUser);
@@ -11,15 +12,24 @@ function FIrsStr({ reset }) {
   const [NavBar, setNavBar] = useState(true);
 
   useEffect(() => {
-    const a =
-      localStorage.getItem("user") != null
-        ? JSON.parse(localStorage.getItem("user"))
-        : { log: "Goust", pas: "1" };
-    console.log(a);
-    if (a != null) {
-      addUOwnUser(a);
-      console.log(OwnUsers);
-    }
+    new Promise((resolve, reject) => {
+      resolve(
+        localStorage.getItem("user") != null
+          ? JSON.parse(localStorage.getItem("user"))
+          : { log: "Goust", pas: "1" }
+      );
+    }).then(async (data) => {
+      if (data != null) {
+        if (data.log != "Goust") {
+          const user = (
+            await axios.get(`http://localhost:4000/api/users/${data.log}`)
+          ).data;
+          if (user) {
+            addUOwnUser(data);
+          }
+        }
+      }
+    });
   }, [addUOwnUser]);
 
   function handleNavBar() {

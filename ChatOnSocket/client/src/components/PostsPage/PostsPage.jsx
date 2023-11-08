@@ -262,6 +262,9 @@ function PostsPage() {
                         onClick={(e) => {
                           showOptions(arg.id);
                           e.stopPropagation();
+                          if (show === arg.id) {
+                            showOptions(-1);
+                          }
                         }}>
                         :
                       </div>
@@ -272,10 +275,16 @@ function PostsPage() {
                       <div
                         onClick={(e) => e.stopPropagation()}
                         className={Poster.options}>
-                        <span post={arg.id} onClick={deletePost}>
+                        <span
+                          style={{ cursor: "pointer" }}
+                          post={arg.id}
+                          onClick={deletePost}>
                           Удалить
                         </span>
-                        <span post={arg.id} onClick={handleChangePost}>
+                        <span
+                          style={{ cursor: "pointer" }}
+                          post={arg.id}
+                          onClick={handleChangePost}>
                           Изменить
                         </span>
                       </div>
@@ -321,6 +330,9 @@ function PostsPage() {
                         onClick={(e) => {
                           showOptions(arg.id);
                           e.stopPropagation();
+                          if (show === arg.id) {
+                            showOptions(-1);
+                          }
                         }}>
                         :
                       </div>
@@ -331,10 +343,16 @@ function PostsPage() {
                       <div
                         onClick={(e) => e.stopPropagation()}
                         className={Poster.options}>
-                        <span post={arg.id} onClick={deletePost}>
+                        <span
+                          style={{ cursor: "pointer" }}
+                          post={arg.id}
+                          onClick={deletePost}>
                           Удалить
                         </span>
-                        <span post={arg.id} onClick={handleChangePost}>
+                        <span
+                          style={{ cursor: "pointer" }}
+                          post={arg.id}
+                          onClick={handleChangePost}>
                           Изменить
                         </span>
                       </div>

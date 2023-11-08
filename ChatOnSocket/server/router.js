@@ -7,6 +7,7 @@ const {
   delPost,
   getRooms,
   addRoom,
+  getUserByLog,
 } = require("./State");
 const router = express.Router();
 
@@ -32,13 +33,17 @@ router.get("/room", (req, res) => {
 });
 
 router.post("/room", (req, res) => {
-  console.log(req.body);
   let id = addRoom(req.body.name, req.body.username);
   res.json(id);
 });
 
 router.get("/users", (req, res) => {
   res.json(getUser());
+});
+
+router.get("/users/:id", (req, res) => {
+  const id = req.params.id;
+  res.json(getUserByLog(id));
 });
 
 router.post("/users", (req, res) => {
