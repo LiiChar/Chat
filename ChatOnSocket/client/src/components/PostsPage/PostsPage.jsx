@@ -236,7 +236,7 @@ function PostsPage() {
                 onChange={HandleValue}
               />
               <button className={Poster.buttonSub} onClick={handleSendPost}>
-                Добавить пост
+                Написать
               </button>
             </div>
           </div>
@@ -362,7 +362,7 @@ function PostsPage() {
                   onChange={HandleValue}
                 />
                 <button className={Poster.buttonSub} onClick={handleSendPost}>
-                  Добавить пост
+                  Написать
                 </button>
               </div>
             )}
