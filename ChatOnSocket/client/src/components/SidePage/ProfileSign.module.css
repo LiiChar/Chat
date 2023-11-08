@@ -1,14 +1,18 @@
-
 .name {
     width: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    font-size: 16px;    
+    font-size: 16px;
+    gap: 10px;
 }
 
-.info{
+.user_cab {
+    width: 120px;
+}
+
+.info {
     width: 80%;
     display: flex;
     align-items: left;

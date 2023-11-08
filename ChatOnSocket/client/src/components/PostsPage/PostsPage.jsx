@@ -140,6 +140,7 @@ function PostsPage() {
 
   async function deletePost(e) {
     addId(e.target.attributes.post.value);
+    showOptions(-1);
     socket.emit("deletePost", e.target.attributes.post.value);
   }
 
@@ -159,6 +160,7 @@ function PostsPage() {
     setShowChange(false);
     setPostChange(Post);
     socket.emit("putPost", { id: postId, message: PostChange });
+    showOptions(-1);
   }
 
   function showOptions(num) {
@@ -169,6 +171,7 @@ function PostsPage() {
   return (
     <div
       className={Poster.wrapper}
+      onClick={() => showOptions(-1)}
       style={{
         backgroundImage: `url(${getImg("/bg1.jpg")})`,
         overflow: "hidden",
@@ -229,7 +232,7 @@ function PostsPage() {
         {OwnUser.log === "" ? (
           <h1>Войдите</h1>
         ) : !isFind ? (
-          <div className={Poster.box}>
+          <div className={Poster.box} onClick={(e) => e.stopPropagation()}>
             Постов нет
             <div className={Poster.Send}>
               <input
@@ -251,33 +254,33 @@ function PostsPage() {
               OwnUser.log === arg.log ? (
                 <div className={Poster.OwnPost} key={arg.id}>
                   <div>
-                    {show === arg.id ? (
-                      <div>
-                        <span post={arg.id} onClick={deletePost}>
-                          Удалить
-                        </span>
-                        <span
-                          post={arg.id}
-                          onClick={handleChangePost}
-                          className={Poster.change}>
-                          Изменить
-                        </span>
-                        <span
-                          // shower={false}
-                          post={arg.id}
-                          className={Poster.show}
-                          onClick={() => showOptions(-1)}>
-                          | <br /> __ Закрыть
-                        </span>
-                      </div>
-                    ) : (
+                    {OwnUser.log === arg.log ? (
                       <div
                         // shower={false}
                         post={arg.id}
                         className={Poster.show}
-                        onClick={() => showOptions(arg.id)}>
-                        | <br /> |
+                        onClick={(e) => {
+                          showOptions(arg.id);
+                          e.stopPropagation();
+                        }}>
+                        :
                       </div>
+                    ) : (
+                      ""
+                    )}
+                    {show === arg.id ? (
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className={Poster.options}>
+                        <span post={arg.id} onClick={deletePost}>
+                          Удалить
+                        </span>
+                        <span post={arg.id} onClick={handleChangePost}>
+                          Изменить
+                        </span>
+                      </div>
+                    ) : (
+                      ""
                     )}
                   </div>
                   <div className={Poster.info}>
@@ -309,39 +312,44 @@ function PostsPage() {
                       <div className={Poster.posts}>{arg.post}</div>
                     </div>
                   </div>
-
-                  {show === arg.id ? (
-                    <div>
-                      <span post={arg.id} onClick={deletePost}>
-                        Удалить
-                      </span>
-                      <span
-                        post={arg.id}
-                        onClick={handleChangePost}
-                        className={Poster.change}>
-                        Изменить
-                      </span>
-                      <span
-                        post={arg.id}
+                  <div>
+                    {OwnUser.log === arg.log ? (
+                      <div
                         // shower={false}
+                        post={arg.id}
                         className={Poster.show}
-                        onClick={() => showOptions(-1)}>
-                        __ <br /> | Закрыть
-                      </span>
-                    </div>
-                  ) : (
-                    <div
-                      // shower={false}
-                      className={Poster.show}
-                      onClick={() => showOptions(arg.id)}>
-                      | <br /> |
-                    </div>
-                  )}
+                        onClick={(e) => {
+                          showOptions(arg.id);
+                          e.stopPropagation();
+                        }}>
+                        :
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    {show === arg.id ? (
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className={Poster.options}>
+                        <span post={arg.id} onClick={deletePost}>
+                          Удалить
+                        </span>
+                        <span post={arg.id} onClick={handleChangePost}>
+                          Изменить
+                        </span>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
               )
             )}
             {showChange ? (
-              <div style={{ color: "white" }} className={Poster.Send}>
+              <div
+                style={{ color: "white" }}
+                className={Poster.Send}
+                onClick={(e) => e.stopPropagation()}>
                 <input
                   autoFocus={true}
                   className={Poster.InputSub}
@@ -365,6 +373,7 @@ function PostsPage() {
                   value={Post}
                   required
                   onChange={HandleValue}
+                  onClick={(e) => e.stopPropagation()}
                 />
                 <button className={Poster.buttonSub} onClick={handleSendPost}>
                   Написать

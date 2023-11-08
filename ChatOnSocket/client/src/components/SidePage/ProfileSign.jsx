@@ -15,7 +15,7 @@ function ProfileSign(props) {
   }
 
   return (
-    <div>
+    <div className={SignCss.user_cab}>
       {OwnUser.log === "" && OwnUser.log === "" ? (
         <div>
           <div>
@@ -52,7 +52,7 @@ function ProfileSign(props) {
                 : FirsStr.link
             }
             to={"/Profile"}>
-            {props.OwnUser.log || props.reset.log}
+            Кабинет
           </Link>
           <img
             className={SignCss.img}
