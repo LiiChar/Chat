@@ -6,19 +6,13 @@ let state = {
       id: 5,
       room_id: 1,
       log: "Mik",
-      post: `Pishoul v banu a ya s toboi fg dfg dfg`,
-    },
-    {
-      id: 6,
-      room_id: 1,
-      log: "Mik",
-      post: `Pishoul v banu a ya s toboi fg dfg dfg`,
+      post: `Привет`,
     },
   ],
   About: [],
   rooms: [
-    { id: 1, name: "Creative" },
-    { id: 2, name: "Upload" },
+    { id: 1, name: "Creative", author: "Goust" },
+    { id: 2, name: "Upload", author: "Goust" },
   ],
 };
 
@@ -39,10 +33,14 @@ exports.getRooms = function () {
   return state.rooms;
 };
 
-exports.addRoom = function (name) {
+exports.addRoom = function (name, username) {
   const last_id = state.rooms.at(-1).id;
-  state.rooms.push({ id: last_id + 1, name });
+  state.rooms.push({ id: last_id + 1, name, author: username });
   return last_id + 1;
+};
+
+exports.deleteChatById = function (id) {
+  state.rooms = state.rooms.filter((room) => room.id != id);
 };
 
 exports.addUser = function (user) {

@@ -2,7 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
-const { getPost, addPost, getUser, changePost, delPost } = require("./State");
+const {
+  getPost,
+  addPost,
+  getUser,
+  changePost,
+  delPost,
+  deleteChatById,
+} = require("./State");
 
 const PORT = 4000;
 const app = express();
@@ -34,6 +41,10 @@ io.on("connection", (socket) => {
   });
   socket.on("addChat", () => {
     io.sockets.emit("addChat");
+  });
+  socket.on("deleteChat", ({ id }) => {
+    deleteChatById(id);
+    io.sockets.emit("deleteChat");
   });
   socket.on("deletePost", (id) => {
     delPost(id);

@@ -26,13 +26,12 @@ router.put("/post", (req, res) => {
 
 router.get("/room", (req, res) => {
   let rooms = getRooms();
-  console.log(rooms);
   res.json(rooms);
 });
 
 router.post("/room", (req, res) => {
   console.log(req.body);
-  let id = addRoom(req.body.name);
+  let id = addRoom(req.body.name, req.body.username);
   res.json(id);
 });
 
