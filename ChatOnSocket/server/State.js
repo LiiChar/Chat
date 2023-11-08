@@ -34,9 +34,14 @@ exports.getRooms = function () {
 };
 
 exports.addRoom = function (name, username) {
-  const last_id = state.rooms.at(-1).id;
-  state.rooms.push({ id: last_id + 1, name, author: username });
-  return last_id + 1;
+  if (state.rooms.length > 0) {
+    const last_id = state.rooms.at(-1).id;
+    state.rooms.push({ id: last_id + 1, name, author: username });
+    return last_id + 1;
+  } else {
+    state.rooms.push({ id: 1, name, author: username });
+    return 1;
+  }
 };
 
 exports.deleteChatById = function (id) {
