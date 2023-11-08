@@ -188,6 +188,7 @@ function PostsPage() {
                 justifyContent: "center",
                 alignItems: "center",
                 borderBottom: "1px solid white",
+                cursor: "pointer",
               }}
               onClick={handleVisbleModal}
               className={Poster.addRomms}>
