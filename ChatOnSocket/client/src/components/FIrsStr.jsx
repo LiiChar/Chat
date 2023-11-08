@@ -21,7 +21,7 @@ function FIrsStr({ reset }) {
           window.location.pathname === "/Home" ? FirsStr.focus : FirsStr.link
         }
         to={"/Home"}>
-        Домой
+        Мои сообщения
       </Link>
 
       <Link

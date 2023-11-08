@@ -283,7 +283,7 @@ function PostsPage() {
                     <div>
                       <img
                         className={Poster.OwnImg}
-                        src={getImg("/foto.jpg")}
+                        src={getImg("/default.jpeg")}
                         alt="foto"
                       />
                     </div>
@@ -295,7 +295,7 @@ function PostsPage() {
                     <div>
                       <img
                         className={Poster.img}
-                        src={getImg("/foto.jpg")}
+                        src={getImg("/default.jpeg")}
                         alt="foto"
                       />
                     </div>
