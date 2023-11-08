@@ -96,6 +96,7 @@
     height: 5vh;
     width: 20%;
     color: white;
+    cursor: pointer,
 }
 
 .listRooms {
