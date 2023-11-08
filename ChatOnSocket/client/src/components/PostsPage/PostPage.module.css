@@ -5,10 +5,10 @@
 .users {
     width: 15%;
     max-height: max-content;
-
-    border-right: 2px solid rgba(83, 83, 83, 0.281);
-    border-left: 2px solid rgba(83, 83, 83, 0.281);
-    border-bottom: 2px solid rgba(83, 83, 83, 0.281);
+    background-color: rgba(27, 27, 27, 0.822);
+    border-right: 2px solid rgba(224, 224, 224, 0.281);
+    border-left: 2px solid rgba(224, 224, 224, 0.281);
+    border-bottom: 2px solid rgba(224, 224, 224, 0.281);
 }
 
 .rooms {
@@ -24,7 +24,7 @@
 .cont {
     display: flex;
     flex-direction: row;
-
+    gap: 20px;
     width: 80%;
 }
 
