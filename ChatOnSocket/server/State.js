@@ -1,14 +1,7 @@
 let state = {
   OwnUser: { log: "Goust", pas: "1" },
   users: [{ id: "Goust", log: "Goust", pas: "1", Name: "", img: "" }],
-  Posts: [
-    {
-      id: 5,
-      room_id: 1,
-      log: "Mik",
-      post: `Привет`,
-    },
-  ],
+  Posts: [],
   About: [],
   rooms: [
     { id: 1, name: "Creative", author: "Goust" },
@@ -46,6 +39,7 @@ exports.addRoom = function (name, username) {
 
 exports.deleteChatById = function (id) {
   state.rooms = state.rooms.filter((room) => room.id != id);
+  state.Posts = state.Posts.filter((post) => post.room_id != id);
 };
 
 exports.addUser = function (user) {
