@@ -86,7 +86,7 @@ function CheckIn() {
           />
           <input
             className={Cheout.input}
-            type="text"
+            type="password"
             placeholder="Введите пароль"
             value={password}
             onChange={handleInputPassword}
