@@ -33,6 +33,10 @@ function CheckIn() {
       setUser("");
       setPassword("");
       addUOwnUser({ log: user, pas: password });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ log: user, pas: password })
+      );
       navigate("/Home");
     } else {
       setUser("");
@@ -56,7 +60,7 @@ function CheckIn() {
 
           <input
             className={CheckinCss.input}
-            type="text"
+            type="password"
             placeholder="Введите пароль"
             value={password}
             onChange={handleInputPassword}

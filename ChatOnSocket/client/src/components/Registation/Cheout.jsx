@@ -26,11 +26,6 @@ function CheckIn() {
   async function AddUserDB(user) {
     await axios.post("http://localhost:4000/api/users", user);
   }
-
-  function FetchAllUser() {
-    socket.emit("addUser");
-  }
-
   function handleInputName(e) {
     setUser(e.target.value);
   }
@@ -49,24 +44,26 @@ function CheckIn() {
         About: "",
         pas: password,
         img: "",
-      }).then(() => {
-        addUser([
-          ...users,
-          {
-            id: `${user}-${password}`,
-            log: user,
-            Name: "",
-            About: "",
-            pas: password,
-            img: "",
-          },
-        ]);
-        FetchAllUser();
-        setUser("");
-        setPassword("");
-        addUOwnUser({ log: user, pas: password });
-        navigate("/Home");
       });
+      addUser([
+        ...users,
+        {
+          id: `${user}-${password}`,
+          log: user,
+          Name: "",
+          About: "",
+          pas: password,
+          img: "",
+        },
+      ]);
+      setUser("");
+      setPassword("");
+      addUOwnUser({ log: user, pas: password });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ log: user, pas: password })
+      );
+      navigate("/Home");
     } else {
       alert("Такое имя уже есть");
     }

@@ -1,16 +1,8 @@
 import { create } from "zustand";
 import { v4 } from "uuid";
 
-const getAuthUser = () => {
-  if (localStorage.get("user")) {
-    addUOwnUser(JSON.parse(localStorage.get("user")));
-  } else {
-    addUOwnUser({ log: "Goust", pas: "1" });
-  }
-};
-
 export const useStore = create((set) => ({
-  OwnUser: getAuthUser(),
+  OwnUser: { log: "Goust", pas: "1" },
   users: [{ id: "Goust", log: "Goust", pas: "1", Name: "", img: "" }],
   Posts: [],
   About: [],
@@ -53,17 +45,16 @@ export const useStore = create((set) => ({
       Posts: Post,
     })),
 
-  addUOwnUser: (user) => {
-    localStorage.set("user", JSON.stringify(user));
-    return set((state) => ({
+  addUOwnUser: (user) =>
+    set((state) => ({
       OwnUser: user,
-    }));
-  },
+    })),
 
-  delOwnUser: () => {
-    localStorage.clear("user");
-    return set((state) => ({
+  delOwnUser: () =>
+    set((state) => ({
       OwnUser: { log: "", pas: "" },
-    }));
-  },
+    })),
 }));
+
+// localStorage.setItem("user", JSON.stringify(user));
+// localStorage.clear("user");

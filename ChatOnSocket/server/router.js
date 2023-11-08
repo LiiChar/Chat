@@ -17,11 +17,13 @@ router.get("/post", (req, res) => {
 router.delete("/post/:id", (req, res) => {
   const id = req.params.id;
   delPost(id);
+  res.status(200);
 });
 
 router.put("/post", (req, res) => {
   const { id, message } = req.body;
   changePost(id, message);
+  res.status(200);
 });
 
 router.get("/room", (req, res) => {
@@ -42,6 +44,7 @@ router.get("/users", (req, res) => {
 router.post("/users", (req, res) => {
   const data = req.body;
   addUser(data);
+  res.status(200);
 });
 
 module.exports = router;

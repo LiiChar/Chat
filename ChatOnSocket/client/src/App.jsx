@@ -8,27 +8,13 @@ import CheckIn from "./components/Registation/CheckIn";
 import Cheout from "./components/Registation/Cheout";
 import Profile from "./components/Profile/Profile";
 import "./App.css";
-import { useStore } from "zustand";
 
 function App() {
   const [res, setRes] = useState({ log: "", pas: "" });
-  const addUOwnUser = useStore((state) => state.addUOwnUser);
 
   function reset(par) {
     setRes(par);
   }
-
-  useEffect(() => {
-    getAuthUser();
-  }, []);
-
-  const getAuthUser = () => {
-    if (localStorage.get("user")) {
-      addUOwnUser(JSON.parse(localStorage.get("user")));
-    } else {
-      addUOwnUser({ log: "Goust", pas: "1" });
-    }
-  };
 
   return (
     <div className="main">
