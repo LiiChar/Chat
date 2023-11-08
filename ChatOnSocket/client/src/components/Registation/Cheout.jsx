@@ -49,24 +49,24 @@ function CheckIn() {
         About: "",
         pas: password,
         img: "",
+      }).then(() => {
+        addUser([
+          ...users,
+          {
+            id: `${user}-${password}`,
+            log: user,
+            Name: "",
+            About: "",
+            pas: password,
+            img: "",
+          },
+        ]);
+        FetchAllUser();
+        setUser("");
+        setPassword("");
+        addUOwnUser({ log: user, pas: password });
+        navigate("/Home");
       });
-      addUser([
-        ...users,
-        {
-          id: `${user}-${password}`,
-          log: user,
-          Name: "",
-          About: "",
-          pas: password,
-          img: "",
-        },
-      ]);
-      console.log(users);
-      FetchAllUser();
-      setUser("");
-      setPassword("");
-      addUOwnUser({ log: user, pas: password });
-      navigate("/Home");
     } else {
       alert("Такое имя уже есть");
     }
