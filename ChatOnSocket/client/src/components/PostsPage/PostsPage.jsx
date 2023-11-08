@@ -210,9 +210,13 @@ function PostsPage() {
                       padding: "0 5px",
                     }}
                     onClick={() => setMainRomm(ro.id)}>
-                    <span>{ro.name}</span>
+                    <span style={{ cursor: "pointer" }}>{ro.name}</span>
                     {OwnUser.log === ro.author ? (
-                      <span onClick={() => deleteChat(ro.id)}>x</span>
+                      <span
+                        style={{ cursor: "pointer" }}
+                        onClick={() => deleteChat(ro.id)}>
+                        x
+                      </span>
                     ) : (
                       ""
                     )}
